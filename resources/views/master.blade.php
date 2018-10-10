@@ -15,16 +15,23 @@
 <body>
 <div id="wrapper">
 
-    @include('_partials.sidebar')
+    @include('partials._sidebar')
 
     <div id="page-wrapper" class="gray-bg" style="min-height: 938px;">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="login.html">
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                             <i class="fa fa-sign-out"></i> Log out
+
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
                 </ul>
 
