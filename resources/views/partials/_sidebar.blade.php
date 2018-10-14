@@ -24,16 +24,16 @@
             </li>
 
             <li>
-                <a href="{{ route('storytelling.index') }}"><i class="fa fa-diamond"></i> <span class="nav-label">Storytelling</span></a>
+                <a href="{{ route('storytelling.index') }}"><i class="fa fa-fire"></i> <span class="nav-label">Storytelling</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Create your story</span></a>
+                <a href="#"><i class="fa fa-pencil"></i> <span class="nav-label">Create your story</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Read stories</span></a>
+                <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Read stories</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Story Rankings</span></a>
+                <a href="#"><i class="fa fa-list-ol"></i> <span class="nav-label">Story Rankings</span></a>
             </li>
             {{--<li>--}}
                 {{--<a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">List</span> <span class="fa arrow"></span></a>--}}

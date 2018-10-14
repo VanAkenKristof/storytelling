@@ -8,8 +8,9 @@ class StoryController extends Controller
 {
     public function index()
     {
-        $title = 'home';
+        $title = 'Storytelling | Demystified';
+        $subTitle = "Storytelling demystified!";
 
-        return view('home.index', compact('title'));
+        return view('storytelling.index', compact('title', 'subTitle'));
     }
 }
