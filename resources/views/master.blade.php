@@ -21,6 +21,7 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <ul class="nav navbar-top-links navbar-right">
+                    @if (Auth::user())
                     <li>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -33,6 +34,7 @@
                             {{ csrf_field() }}
                         </form>
                     </li>
+                    @endif
                 </ul>
 
             </nav>
