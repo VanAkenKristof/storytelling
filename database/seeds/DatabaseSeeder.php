@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
 //         $this->call(RaceSeeder::class);
 //         $this->call(ClassSeeder::class);
 //         $this->call(BackgroundSeeder::class);
+//         $this->call(StorySeeder::class);
     }
 }

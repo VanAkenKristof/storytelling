@@ -16,6 +16,7 @@ class CreateSubClassesTable extends Migration
         Schema::create('sub_classes', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
+
             $table->unsignedInteger('class_id');
             $table->foreign('class_id')->references('id')->on('classes');
 
