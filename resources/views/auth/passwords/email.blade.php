@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html>
+@extends('master')
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | Forgot password</title>
-
+@section('scripts')
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
+@endsection
 
-</head>
-
-<body class="gray-bg">
-
-<div class="passwordBox animated fadeInDown">
-    <div class="row">
-
-        <div class="col-md-12">
+@section('content')
+    <div class="col-lg-6">
+        <div class="ibox">
             <div class="ibox-content">
 
                 <h2 class="font-bold">Forgot password</h2>
@@ -58,9 +47,9 @@
             </div>
         </div>
     </div>
-    <hr/>
-</div>
+@endsection
 
-</body>
-
-</html>
+@section('scripts')
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+@endsection

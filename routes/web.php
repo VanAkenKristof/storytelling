@@ -3,7 +3,7 @@
 
 Auth::routes();
 
-Route::get('/', 'StoryController@index')->name('index');
+Route::get('/', 'StoryController@index')->name('storytelling.index');
 
 
 Route::group(['middleware' => ['auth']], function () {

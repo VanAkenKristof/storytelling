@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ $title }}</title>
+    <title>{{ isset($title) ? $title : "Storytelling" }}</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -41,7 +41,7 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Article</h2>
+                <h2>{{ isset($subTitle) ? $subTitle : "Storytelling" }}</h2>
             </div>
         </div>
 
