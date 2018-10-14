@@ -30,7 +30,7 @@
                 <a href="#"><i class="fa fa-pencil"></i> <span class="nav-label">Create your story</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Read stories</span></a>
+                <a href="{{ route('storytelling.list') }}"><i class="fa fa-book"></i> <span class="nav-label">Read stories</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-list-ol"></i> <span class="nav-label">Story Rankings</span></a>

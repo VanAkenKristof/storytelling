@@ -17,4 +17,9 @@ class SubClass extends Model
     {
         return $this->belongsTo(ClassModel::class);
     }
+
+    public function stories()
+    {
+        return $this->belongsToMany(Story::class);
+    }
 }

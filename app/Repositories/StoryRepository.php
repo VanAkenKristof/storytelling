@@ -1,15 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dyroth
- * Date: 14-Oct-18
- * Time: 22:23
- */
 
 namespace App\Repositories;
 
 
+use App\Story;
+
 class StoryRepository
 {
+
+    public function getAll()
+    {
+        return Story::all();
+    }
 
 }

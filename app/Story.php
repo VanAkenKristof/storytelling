@@ -19,4 +19,30 @@ use Illuminate\Database\Eloquent\Model;
 class Story extends Model
 {
     protected $table = "stories";
+
+    public function background()
+    {
+        return $this->belongsTo(Background::class);
+    }
+
+    public function race()
+    {
+        return $this->belongsTo(Race::class);
+    }
+
+    public function class()
+    {
+        return $this->belongsTo(ClassModel::class);
+    }
+
+    public function subClass()
+    {
+        return $this->belongsTo(SubClass::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

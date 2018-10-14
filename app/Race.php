@@ -10,5 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Race extends Model
 {
-    //
+    public function stories()
+    {
+        return $this->belongsToMany(Story::class);
+    }
 }
