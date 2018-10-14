@@ -30,12 +30,14 @@
                                     </a>
                                     <div class="contact-box-footer">
                                         <div class="m-t-xs btn-group">
-                                            @if (!$votes->contains($story->id))
-                                                <a href="{{ route('storytelling.vote', ['story' => $story->id]) }}" class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Vote </a>
-                                            @else
-                                                <a href="{{ route('storytelling.unvote', ['story' => $story->id]) }}" class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Retract Vote </a>
+                                            @if (isset($votes))
+                                                @if (!$votes->contains($story->id))
+                                                    <a href="{{ route('storytelling.vote', ['story' => $story]) }}" class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Vote </a>
+                                                @else
+                                                    <a href="{{ route('storytelling.unvote', ['story' => $story]) }}" class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Retract Vote </a>
+                                                @endif
                                             @endif
-                                            <a href="" class="btn btn-xs btn-white"><i class="fa fa-book"></i> Read </a>
+                                            <a href="{{ route('storytelling.view', ['story' => $story]) }}" class="btn btn-xs btn-white"><i class="fa fa-book"></i> Read </a>
                                         </div>
                                     </div>
 

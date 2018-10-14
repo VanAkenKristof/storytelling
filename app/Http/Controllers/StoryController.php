@@ -39,22 +39,39 @@ class StoryController extends Controller
         $subTitle = 'Stories';
 
         $stories = $this->storyRepository->getAll();
-        $votes = $this->voteRepository->getVotesFromUser(Auth::user())->pluck('story_id');
+
+        if (Auth::user()) {
+            $votes = $this->voteRepository->getVotesFromUser(Auth::user())->pluck('story_id');
+        }
 
         return view ('storytelling.list', compact('title', 'subTitle', 'stories', 'votes'));
+    }
+
+    public function view(Story $story)
+    {
+        $title = 'Storytelling | List';
+        $subTitle = 'Stories';
+
+        if (Auth::user()) {
+            $voted = $this->voteRepository->findVoteByStoryAndUser($story, Auth::user());
+        }
+
+        $votes = $this->voteRepository->getAmountVoted($story);
+
+        return view ('storytelling.view', compact('title', 'subTitle', 'story', 'voted', 'votes'));
     }
 
     public function vote(Story $story)
     {
         $this->voteRepository->saveVote($story, Auth::user());
 
-        return redirect(route('storytelling.list'));
+        return redirect()->back();
     }
 
     public function unvote(Story $story)
     {
         $this->voteRepository->deleteVote($story, Auth::user());
 
-        return redirect(route('storytelling.list'));
+        return redirect()->back();
     }
 }

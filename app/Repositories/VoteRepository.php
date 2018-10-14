@@ -19,7 +19,7 @@ class VoteRepository
 
     public function deleteVote(Story $story, User $user)
     {
-        $voteId = Vote::where('story_id', $story->id)->where('user_id', $user->id)->first()->id;
+        $voteId = $this->findVoteByStoryAndUser($story, $user);
 
         $vote = Vote::find($voteId);
         $vote->delete();
@@ -30,4 +30,19 @@ class VoteRepository
         return $user->votes();
     }
 
+    public function findVoteByStoryAndUser(Story $story, User $user)
+    {
+        $vote = Vote::where('story_id', $story->id)->where('user_id', $user->id)->first();
+
+        if ($vote) {
+            return $vote->id;
+        }
+
+        return false;
+    }
+
+    public function getAmountVoted(Story $story)
+    {
+        return Vote::where('story_id', $story->id)->count();
+    }
 }
