@@ -12,12 +12,11 @@
                             <div class="col-lg-3">
                                 <div class="contact-box center-version">
 
-                                    <a href="#">
+                                    <a href="{{ route('storytelling.view', ['story' => $story]) }}">
 
                                         {{--<img alt="image" class="rounded-circle" src="img/a2.jpg">--}}
 
-
-                                        <h3 class="m-b-xs"><strong>{{ $story->name }}</strong></h3>
+                                        <h3 class="m-b-xs"><strong>@if((isset($votes) && $votes->contains($story->id))) <i class="fa fa-heart"></i> @endif{{ $story->name }}</strong></h3>
 
                                         <div class="font-bold">By {{ $story->user->name }}</div>
                                         <div class="m-t-md">
@@ -34,7 +33,7 @@
                                                 @if (!$votes->contains($story->id))
                                                     <a href="{{ route('storytelling.vote', ['story' => $story]) }}" class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Vote </a>
                                                 @else
-                                                    <a href="{{ route('storytelling.unvote', ['story' => $story]) }}" class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Retract Vote </a>
+                                                    <a href="{{ route('storytelling.unvote', ['story' => $story]) }}" class="btn btn-xs btn-white"><i class="fa fa-frown-o"></i> Unvote </a>
                                                 @endif
                                             @endif
                                             <a href="{{ route('storytelling.view', ['story' => $story]) }}" class="btn btn-xs btn-white"><i class="fa fa-book"></i> Read </a>

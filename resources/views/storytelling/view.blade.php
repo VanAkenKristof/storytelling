@@ -48,7 +48,7 @@
                                                                 </a>
                                                                 @else
                                                                     <a href="{{ route('storytelling.unvote', ['story' => $story]) }}" style="text-decoration: none; color: #fff;">
-                                                                    <i class="fa fa-frown-o"></i> Retract Vote
+                                                                    <i class="fa fa-frown-o"></i> Unvote
                                                                 </a>
                                                                 @endif
                                                             </span>
