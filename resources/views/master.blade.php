@@ -9,6 +9,7 @@
 
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/stylesheet.css" rel="stylesheet">
 
     @yield('styles')
 </head>

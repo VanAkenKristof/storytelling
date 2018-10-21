@@ -27,7 +27,7 @@
                 <a href="{{ route('storytelling.index') }}"><i class="fa fa-fire"></i> <span class="nav-label">Storytelling</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-pencil"></i> <span class="nav-label">Create your story</span></a>
+                <a href="{{ route('storytelling.create') }}"><i class="fa fa-pencil"></i> <span class="nav-label">Create your story</span></a>
             </li>
             <li>
                 <a href="{{ route('storytelling.list') }}"><i class="fa fa-book"></i> <span class="nav-label">Read stories</span></a>
@@ -35,13 +35,6 @@
             <li>
                 <a href="#"><i class="fa fa-list-ol"></i> <span class="nav-label">Story Rankings</span></a>
             </li>
-            {{--<li>--}}
-                {{--<a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">List</span> <span class="fa arrow"></span></a>--}}
-                {{--<ul class="nav nav-second-level collapse">--}}
-                    {{--<li><a href="#">Item 1</a></li>--}}
-                    {{--<li><a href="#">Item 2</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
         </ul>
 
     </div>

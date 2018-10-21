@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\BackgroundRepository;
+use App\Repositories\ClassRepository;
+use App\Repositories\RaceRepository;
 use App\Repositories\StoryRepository;
 use App\Repositories\VoteRepository;
 use App\Story;
@@ -18,11 +21,26 @@ class StoryController extends Controller
      * @var VoteRepository
      */
     private $voteRepository;
+    /**
+     * @var RaceRepository
+     */
+    private $raceRepository;
+    /**
+     * @var ClassRepository
+     */
+    private $classRepository;
+    /**
+     * @var BackgroundRepository
+     */
+    private $backgroundRepository;
 
-    public function __construct(StoryRepository $storyRepository, VoteRepository $voteRepository)
+    public function __construct(StoryRepository $storyRepository, VoteRepository $voteRepository, RaceRepository $raceRepository, ClassRepository $classRepository, BackgroundRepository $backgroundRepository)
     {
         $this->storyRepository = $storyRepository;
         $this->voteRepository = $voteRepository;
+        $this->raceRepository = $raceRepository;
+        $this->classRepository = $classRepository;
+        $this->backgroundRepository = $backgroundRepository;
     }
 
     public function index()
@@ -59,6 +77,35 @@ class StoryController extends Controller
         $votes = $this->voteRepository->getAmountVoted($story);
 
         return view ('storytelling.view', compact('title', 'subTitle', 'story', 'voted', 'votes'));
+    }
+
+    public function create()
+    {
+        $title = 'Storytelling | List';
+        $subTitle = 'Create Story';
+
+        if (!Auth::user()) {
+            return redirect(route('login'));
+        }
+
+        $races = $this->raceRepository->getAll();
+        $classes = $this->classRepository->getAll();
+        $backgrounds = $this->backgroundRepository->getAll();
+
+        return view ('storytelling.create', compact('title', 'subTitle', 'races', 'classes', 'backgrounds'));
+    }
+
+    public function save(Request $request)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect(route('login'));
+        }
+
+        $this->storyRepository->save($user, $request->all());
+
+        return redirect(route('storytelling.list'));
     }
 
     public function vote(Story $story)

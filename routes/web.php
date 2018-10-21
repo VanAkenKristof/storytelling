@@ -10,6 +10,9 @@ Route::get('/view/{story}', 'StoryController@view')->name('storytelling.view');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::middleware(['auth.user'])->group(function () {
+        Route::get('/create', 'StoryController@create')->name('storytelling.create');
+        Route::post('/create', 'StoryController@save')->name('storytelling.save');
+
         Route::get('/vote/{story}', 'StoryController@vote')->name('storytelling.vote');
         Route::get('/unvote/{story}', 'StoryController@unvote')->name('storytelling.unvote');
     });

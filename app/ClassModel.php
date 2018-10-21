@@ -14,6 +14,6 @@ class ClassModel extends Model
 
     public function subClasses()
     {
-        return $this->hasMany(SubClass::class);
+        return $this->hasMany(SubClass::class, 'class_id');
     }
 }
