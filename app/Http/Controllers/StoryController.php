@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidateStory;
 use App\Repositories\BackgroundRepository;
 use App\Repositories\ClassRepository;
 use App\Repositories\RaceRepository;
@@ -95,7 +96,7 @@ class StoryController extends Controller
         return view ('storytelling.create', compact('title', 'subTitle', 'races', 'classes', 'backgrounds'));
     }
 
-    public function save(Request $request)
+    public function save(ValidateStory $request)
     {
         $user = Auth::user();
 
