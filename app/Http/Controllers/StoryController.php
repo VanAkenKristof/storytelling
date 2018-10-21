@@ -85,8 +85,16 @@ class StoryController extends Controller
         $title = 'Storytelling | List';
         $subTitle = 'Create Story';
 
-        if (!Auth::user()) {
+        $user = Auth::user();
+
+        if (!$user) {
             return redirect(route('login'));
+        }
+
+        $story = $this->storyRepository->getUserStory($user);
+
+        if ($story) {
+            return redirect(route('storytelling.edit', compact('story')));
         }
 
         $races = $this->raceRepository->getAll();
@@ -107,6 +115,22 @@ class StoryController extends Controller
         $this->storyRepository->save($user, $request->all());
 
         return redirect(route('storytelling.list'));
+    }
+
+    public function edit(Story $story)
+    {
+        $title = 'Storytelling | List';
+        $subTitle = 'Edit Story';
+
+        if (!Auth::user()) {
+            return redirect(route('login'));
+        }
+
+        $races = $this->raceRepository->getAll();
+        $classes = $this->classRepository->getAll();
+        $backgrounds = $this->backgroundRepository->getAll();
+
+        return view ('storytelling.create', compact('title', 'subTitle', 'races', 'classes', 'backgrounds', 'story'));
     }
 
     public function vote(Story $story)

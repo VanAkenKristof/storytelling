@@ -14,6 +14,11 @@ class StoryRepository
         return Story::all();
     }
 
+    public function getUserStory(User $user)
+    {
+        return Story::where('user_id', $user->id)->get()->first();
+    }
+
     public function save(User $user, $data)
     {
         $story = new Story();
