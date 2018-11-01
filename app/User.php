@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $email
  * @property string $password
  * @property string $ip_address
+ * @property string $ban_message
  * @property boolean $admin
  */
 
@@ -43,13 +44,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function stories()
+    public function story()
     {
-        return $this->belongsTo(Story::class);
+        return $this->hasOne(Story::class);
     }
 
     public function votes()
     {
-        return $this->hasMany(Vote::class);
+        return $this->belongsToMany(Story::class, 'votes');
+    }
+
+    public function fullAddress()
+    {
+        return $this->street . " " . $this->number . " | " . $this->postal_code . " " . $this->city . " " . $this->country;
     }
 }

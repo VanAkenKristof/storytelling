@@ -19,6 +19,19 @@ class StorySeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
+        $user = new User();
+        $user->name = 'Kristof Van Aken';
+        $user->street = 'Koningin Astridplein';
+        $user->number = '37/2';
+        $user->postal_code = '2018';
+        $user->city = 'Antwerpen';
+        $user->country = 'Belgium';
+
+        $user->email = 'kristof.vanaken@student.kdg.be';
+        $user->password = bcrypt("abc123");
+        $user->admin = 1;
+        $user->save();
+
         for ($i = 0; $i < 20; $i++) {
 
             $subClass = $this->getRandomSubRace();

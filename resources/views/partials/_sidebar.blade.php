@@ -35,6 +35,15 @@
             <li>
                 <a href="#"><i class="fa fa-list-ol"></i> <span class="nav-label">Story Rankings</span></a>
             </li>
+
+            @if (Auth::user() && Auth::User()->admin)
+                <li>
+                    <a href="{{ route('admin.users.list') }}"><i class="fa fa-user"></i> <span class="nav-label">Users</span></a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.settings.index') }}"><i class="fa fa-cogs"></i> <span class="nav-label">Settings</span></a>
+                </li>
+            @endif
         </ul>
 
     </div>

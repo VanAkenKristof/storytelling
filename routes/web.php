@@ -21,7 +21,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::middleware(['auth.admin'])->group(function () {
-        //
+        Route::get('/users', 'AdminController@users')->name('admin.users.list');
+        Route::post('/users/ban/{user}', 'AdminController@banUser')->name('admin.users.ban');
+        Route::get('/users/unban/{user}', 'AdminController@unbanUser')->name('admin.users.unban');
+
+        Route::get('/settings', 'AdminController@settings')->name('admin.settings.index');
     });
 });
 

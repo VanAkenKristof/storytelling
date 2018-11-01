@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\SelectedSubclass;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateStory extends FormRequest
+class StoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

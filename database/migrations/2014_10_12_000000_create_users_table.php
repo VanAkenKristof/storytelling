@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('city');
             $table->string('country');
 
+            $table->string('ban_message')->nullable();
+
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
