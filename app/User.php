@@ -9,6 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 /**
  * @property integer $id
  * @property string $name
+ * @property string $street
+ * @property string $number
+ * @property string $postal_code
+ * @property string $city
+ * @property string $country
  * @property string $email
  * @property string $password
  * @property string $ip_address

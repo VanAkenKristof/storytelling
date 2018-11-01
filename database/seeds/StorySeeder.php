@@ -25,6 +25,12 @@ class StorySeeder extends Seeder
 
             $user = new User();
             $user->name = $faker->name;
+            $user->street = $faker->streetName;
+            $user->number = $faker->numberBetween(1, 500);
+            $user->postal_code = $faker->postcode;
+            $user->city = $faker->city;
+            $user->country = $faker->country;
+
             $user->email = $faker->email;
             $user->password = Hash::make($faker->password);
             $user->save();
