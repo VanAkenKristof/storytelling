@@ -31,6 +31,7 @@ class StoryRepository
         $story->name = $data['name'];
         $story->age = $data['age'];
         $story->story = $data['backstory'];
+        $story->ip_address = request()->ip();
 
         $story->save();
     }

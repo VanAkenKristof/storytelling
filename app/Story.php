@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property integer $id
@@ -14,10 +15,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property integer $age
  * @property string $story
+ * @property string $ip_address
  */
 
 class Story extends Model
 {
+    use SoftDeletes;
+
     protected $table = "stories";
 
     public function background()

@@ -34,6 +34,7 @@ class CreateStoriesTable extends Migration
             $table->text('name');
             $table->integer('age');
             $table->text('story');
+            $table->text('ip_address');
 
             $table->timestamps();
             $table->softDeletes();

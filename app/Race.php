@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $name
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Race extends Model
 {
+    use SoftDeletes;
+
     public function stories()
     {
         return $this->belongsToMany(Story::class);

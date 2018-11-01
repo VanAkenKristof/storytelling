@@ -67,7 +67,6 @@ class RegisterController extends Controller
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
-        $user->ip_address = request()->ip();
 
         $user->save();
 

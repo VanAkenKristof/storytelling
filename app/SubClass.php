@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property string $name
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubClass extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'sub_classes';
 
     public function class()

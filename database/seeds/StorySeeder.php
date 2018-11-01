@@ -27,7 +27,6 @@ class StorySeeder extends Seeder
             $user->name = $faker->name;
             $user->email = $faker->email;
             $user->password = Hash::make($faker->password);
-            $user->ip_address = $faker->ipv4;
             $user->save();
 
             $story = new Story();
@@ -39,6 +38,7 @@ class StorySeeder extends Seeder
             $story->name = $faker->name;
             $story->age = rand(14, 400);
             $story->story = $faker->text(800);
+            $story->ip_address = $faker->ipv4;
             $story->save();
         }
     }
