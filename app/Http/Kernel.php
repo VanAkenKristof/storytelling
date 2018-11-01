@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\UserBanned;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -59,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'auth.user' => \App\Http\Middleware\AuthenticateUser::class,
         'auth.admin' => \App\Http\Middleware\AuthenticateAdmin::class,
+        'auth.banned' => UserBanned::class,
     ];
 }
