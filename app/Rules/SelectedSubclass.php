@@ -31,6 +31,10 @@ class SelectedSubclass implements Rule
      */
     public function passes($attribute, $value)
     {
+        if (!isset($value[$this->class])) {
+            return false;
+        }
+
         return $value[$this->class] != null;
     }
 

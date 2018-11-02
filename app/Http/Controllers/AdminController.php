@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BanRequest;
 use App\Http\Requests\PhaseRequest;
 use App\Repositories\SettingsRepository;
 use App\Repositories\UserRepository;
@@ -10,7 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminController extends BaseController
 {
     /**
      * @var UserRepository
@@ -28,6 +27,7 @@ class AdminController extends Controller
      */
     public function __construct(UserRepository $userRepository, SettingsRepository $settingsRepository)
     {
+        parent::__construct();
         $this->userRepository = $userRepository;
         $this->settingsRepository = $settingsRepository;
     }

@@ -21,7 +21,11 @@ class StoryRepository
 
     public function save(User $user, $data)
     {
-        $story = new Story();
+        $story = $this->getUserStory($user);
+
+        if (!$story) {
+            $story = new Story();
+        }
 
         $story->user_id = $user['id'];
         $story->race_id = $data['race'];

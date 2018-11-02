@@ -41,6 +41,33 @@ class SettingsRepository
         return $phases;
     }
 
+    public function getFormattedCarbonPhases()
+    {
+        $phases = collect();
+
+        foreach ($this->getPhases() as $phase) {
+            $phases->put($phase->id, [
+                'start' => Carbon::parse($phase->start)->startOfDay(),
+                'end' => Carbon::parse($phase->end)->endOfDay(),
+            ]);
+        }
+
+        return $phases;
+    }
+
+    public function getCurrentPhase()
+    {
+        $currentPhase = null;
+
+        foreach ($this->getFormattedCarbonPhases() as $key => $phase) {
+            if ($phase['start'] <= Carbon::today() && $phase['end'] >= Carbon::today()) {
+                $currentPhase = $key;
+            }
+        }
+
+        return $currentPhase;
+    }
+
     private function getStart($date)
     {
         $start = explode(' - ', $date)[0];

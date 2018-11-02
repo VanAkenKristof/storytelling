@@ -2,6 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckPhase1;
+use App\Http\Middleware\CheckPhase2;
+use App\Http\Middleware\CheckPhase3;
+use App\Http\Middleware\CheckPhase4;
 use App\Http\Middleware\UserBanned;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -61,5 +65,9 @@ class Kernel extends HttpKernel
         'auth.user' => \App\Http\Middleware\AuthenticateUser::class,
         'auth.admin' => \App\Http\Middleware\AuthenticateAdmin::class,
         'auth.banned' => UserBanned::class,
+        'auth.phase1' => CheckPhase1::class,
+        'auth.phase2' => CheckPhase2::class,
+        'auth.phase3' => CheckPhase3::class,
+        'auth.phase4' => CheckPhase4::class,
     ];
 }

@@ -26,15 +26,30 @@
             <li>
                 <a href="{{ route('storytelling.index') }}"><i class="fa fa-fire"></i> <span class="nav-label">Storytelling</span></a>
             </li>
+
+            @if (($currentPhase == 1 && (Auth::User() && !Auth::User()->admin)) || env('TESTMODE'))
             <li>
                 <a href="{{ route('storytelling.create') }}"><i class="fa fa-pencil"></i> <span class="nav-label">Your story</span></a>
             </li>
+            @endif
+
+            @if ($currentPhase == 2 && (Auth::User() && !Auth::User()->admin) || env('TESTMODE'))
             <li>
                 <a href="{{ route('storytelling.list') }}"><i class="fa fa-book"></i> <span class="nav-label">Read stories</span></a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-list-ol"></i> <span class="nav-label">Story Rankings</span></a>
-            </li>
+            @endif
+
+            @if($currentPhase == 3 || (Auth::User() && Auth::User()->admin) || env('TESTMODE'))
+                <li>
+                    <a href="{{ route('storytelling.rankings') }}"><i class="fa fa-list-ol"></i> <span class="nav-label">Story Rankings</span></a>
+                </li>
+            @endif
+
+            @if($currentPhase == 4 || env('TESTMODE'))
+                <li>
+                    <a href="{{ route('storytelling.winner') }}"><i class="fa fa-trophy"></i> <span class="nav-label">Story Winner</span></a>
+                </li>
+            @endif
 
             @if (Auth::user() && Auth::User()->admin)
                 <li>

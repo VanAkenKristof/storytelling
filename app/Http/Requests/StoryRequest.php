@@ -27,7 +27,7 @@ class StoryRequest extends FormRequest
         return [
             'race' => 'required',
             'class' => 'required',
-            'subclass' => [new SelectedSubclass(request()->class)],
+            'subclass' => ['required', new SelectedSubclass(request()->class)],
             'background' => 'required',
             'name' => 'required',
             'age' => 'required|integer',

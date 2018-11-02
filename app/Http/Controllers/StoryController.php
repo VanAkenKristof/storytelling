@@ -13,7 +13,7 @@ use App\Story;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StoryController extends Controller
+class StoryController extends BaseController
 {
     /**
      * @var StoryRepository
@@ -57,6 +57,7 @@ class StoryController extends Controller
         BackgroundRepository $backgroundRepository,
         SettingsRepository $settingsRepository)
     {
+        parent::__construct();
         $this->storyRepository = $storyRepository;
         $this->voteRepository = $voteRepository;
         $this->raceRepository = $raceRepository;
@@ -114,15 +115,15 @@ class StoryController extends Controller
             return redirect(route('login'));
         }
 
-        $story = $this->storyRepository->getUserStory($user);
-
-        if ($story) {
-            return redirect(route('storytelling.edit', compact('story')));
-        }
-
         $races = $this->raceRepository->getAll();
         $classes = $this->classRepository->getAll();
         $backgrounds = $this->backgroundRepository->getAll();
+
+        $story = $this->storyRepository->getUserStory($user);
+
+        if ($story) {
+            return view ('storytelling.create', compact('title', 'subTitle', 'races', 'classes', 'backgrounds', 'story'));
+        }
 
         return view ('storytelling.create', compact('title', 'subTitle', 'races', 'classes', 'backgrounds'));
     }
@@ -138,22 +139,6 @@ class StoryController extends Controller
         $this->storyRepository->save($user, $request->all());
 
         return redirect(route('storytelling.list'));
-    }
-
-    public function edit(Story $story)
-    {
-        $title = 'Storytelling | List';
-        $subTitle = 'Edit Story';
-
-        if (!Auth::user()) {
-            return redirect(route('login'));
-        }
-
-        $races = $this->raceRepository->getAll();
-        $classes = $this->classRepository->getAll();
-        $backgrounds = $this->backgroundRepository->getAll();
-
-        return view ('storytelling.create', compact('title', 'subTitle', 'races', 'classes', 'backgrounds', 'story'));
     }
 
     public function vote(Story $story)
