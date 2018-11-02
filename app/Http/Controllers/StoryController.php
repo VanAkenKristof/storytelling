@@ -9,6 +9,7 @@ use App\Repositories\RaceRepository;
 use App\Repositories\SettingsRepository;
 use App\Repositories\StoryRepository;
 use App\Repositories\VoteRepository;
+use App\Repositories\WinnerRepository;
 use App\Story;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,10 @@ class StoryController extends BaseController
      * @var SettingsRepository
      */
     private $settingsRepository;
+    /**
+     * @var WinnerRepository
+     */
+    private $winnerRepository;
 
     /**
      * StoryController constructor.
@@ -48,6 +53,7 @@ class StoryController extends BaseController
      * @param ClassRepository $classRepository
      * @param BackgroundRepository $backgroundRepository
      * @param SettingsRepository $settingsRepository
+     * @param WinnerRepository $winnerRepository
      */
     public function __construct(
         StoryRepository $storyRepository,
@@ -55,7 +61,9 @@ class StoryController extends BaseController
         RaceRepository $raceRepository,
         ClassRepository $classRepository,
         BackgroundRepository $backgroundRepository,
-        SettingsRepository $settingsRepository)
+        SettingsRepository $settingsRepository,
+        WinnerRepository $winnerRepository
+    )
     {
         parent::__construct();
         $this->storyRepository = $storyRepository;
@@ -64,6 +72,7 @@ class StoryController extends BaseController
         $this->classRepository = $classRepository;
         $this->backgroundRepository = $backgroundRepository;
         $this->settingsRepository = $settingsRepository;
+        $this->winnerRepository = $winnerRepository;
     }
 
     public function index()
@@ -92,7 +101,7 @@ class StoryController extends BaseController
 
     public function view(Story $story)
     {
-        $title = 'Storytelling | List';
+        $title = 'Storytelling | Story';
         $subTitle = 'Stories';
 
         if (Auth::user()) {
@@ -153,5 +162,31 @@ class StoryController extends BaseController
         $this->voteRepository->deleteVote($story, Auth::user());
 
         return redirect()->back();
+    }
+
+    public function rankings()
+    {
+        $this->winnerRepository->createTop5();
+
+        $title = 'Storytelling | Top 5';
+        $subTitle = 'Stories';
+
+        $stories = $this->storyRepository->getTop5();
+
+        if (Auth::user()) {
+            $votes = $this->voteRepository->getVotesFromUser(Auth::user())->pluck('story_id');
+        }
+
+        return view ('storytelling.list', compact('title', 'subTitle', 'stories', 'votes'));
+    }
+
+    public function winner()
+    {
+        $story = $this->storyRepository->getTop1();
+
+        $title = 'Storytelling | Winner';
+        $subTitle = 'Winner!';
+
+        return view ('storytelling.view', compact('title', 'subTitle', 'story'));
     }
 }

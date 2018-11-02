@@ -37,7 +37,7 @@
                                                     <div class="col-sm-8 text-sm-left"><dd class="mb-1">{{ $story->background->name }}</dd></div>
                                                 </dl>
 
-                                                @if (Auth::user())
+                                                @if (Auth::user() && isset($votes))
                                                     <dl class="row mb-0">
                                                         <div class="col-sm-4 text-sm-right">
                                                             <dt>
@@ -84,14 +84,16 @@
                                                         <dd class="mb-1"> {{ $story->created_at->format('d/m/Y - h:m') }}</dd>
                                                     </div>
                                                 </dl>
-                                                <dl class="row mb-0">
-                                                    <div class="col-sm-4 text-sm-right">
-                                                        <dt>Votes:</dt>
-                                                    </div>
-                                                    <div class="col-sm-8 text-sm-left">
-                                                        <dd class="mb-1"> {{ $votes }}</dd>
-                                                    </div>
-                                                </dl>
+                                                @if(isset($votes))
+                                                    <dl class="row mb-0">
+                                                        <div class="col-sm-4 text-sm-right">
+                                                            <dt>Votes:</dt>
+                                                        </div>
+                                                        <div class="col-sm-8 text-sm-left">
+                                                            <dd class="mb-1"> {{ $votes }}</dd>
+                                                        </div>
+                                                    </dl>
+                                                @endif
                                             </div>
                                         </div>
 

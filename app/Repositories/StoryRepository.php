@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\Story;
 use App\User;
+use App\Winner;
 
 class StoryRepository
 {
@@ -38,5 +39,28 @@ class StoryRepository
         $story->ip_address = request()->ip();
 
         $story->save();
+    }
+
+    public function getTop5()
+    {
+        $storyIds = Winner::all()->pluck('story_id');
+
+        return Story::whereIn('id', $storyIds)->get();
+    }
+
+    public function getTop1()
+    {
+        $votes = collect();
+        $storyIds = Winner::all()->pluck('story_id');
+
+        $stories = Story::whereIn('id', $storyIds)->get();
+
+        foreach ($stories as $story) {
+            $votes->put($story->id, ['votes' => $story->votes()->count()]);
+        }
+
+        $winnerStoryId = $votes->sortByDesc('votes')->keys()->first();
+
+        return Story::find($winnerStoryId);
     }
 }

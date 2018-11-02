@@ -24,6 +24,7 @@
                                             {{ $story->subClass->name }}<br>
                                             Age {{ $story->age }}<br>
                                             {{ $story->background->name }}<br>
+                                            <strong>Votes: {{ $story->votes->count() }}</strong>
                                         </div>
 
                                     </a>
