@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/users/unban/{user}', 'AdminController@unbanUser')->name('admin.users.unban');
 
         Route::get('/settings', 'AdminController@settings')->name('admin.settings.index');
+        Route::post('/settings/edit', 'AdminController@editSettings')->name('admin.settings.edit');
     });
 });
 
