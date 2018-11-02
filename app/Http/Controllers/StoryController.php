@@ -6,6 +6,7 @@ use App\Http\Requests\StoryRequest;
 use App\Repositories\BackgroundRepository;
 use App\Repositories\ClassRepository;
 use App\Repositories\RaceRepository;
+use App\Repositories\SettingsRepository;
 use App\Repositories\StoryRepository;
 use App\Repositories\VoteRepository;
 use App\Story;
@@ -34,14 +35,34 @@ class StoryController extends Controller
      * @var BackgroundRepository
      */
     private $backgroundRepository;
+    /**
+     * @var SettingsRepository
+     */
+    private $settingsRepository;
 
-    public function __construct(StoryRepository $storyRepository, VoteRepository $voteRepository, RaceRepository $raceRepository, ClassRepository $classRepository, BackgroundRepository $backgroundRepository)
+    /**
+     * StoryController constructor.
+     * @param StoryRepository $storyRepository
+     * @param VoteRepository $voteRepository
+     * @param RaceRepository $raceRepository
+     * @param ClassRepository $classRepository
+     * @param BackgroundRepository $backgroundRepository
+     * @param SettingsRepository $settingsRepository
+     */
+    public function __construct(
+        StoryRepository $storyRepository,
+        VoteRepository $voteRepository,
+        RaceRepository $raceRepository,
+        ClassRepository $classRepository,
+        BackgroundRepository $backgroundRepository,
+        SettingsRepository $settingsRepository)
     {
         $this->storyRepository = $storyRepository;
         $this->voteRepository = $voteRepository;
         $this->raceRepository = $raceRepository;
         $this->classRepository = $classRepository;
         $this->backgroundRepository = $backgroundRepository;
+        $this->settingsRepository = $settingsRepository;
     }
 
     public function index()
@@ -49,7 +70,9 @@ class StoryController extends Controller
         $title = 'Storytelling | Demystified';
         $subTitle = "Storytelling demystified!";
 
-        return view('storytelling.index', compact('title', 'subTitle'));
+        $phases = $this->settingsRepository->getFormattedPhases();
+
+        return view('storytelling.index', compact('title', 'subTitle', 'phases'));
     }
 
     public function list()

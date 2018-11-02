@@ -27,6 +27,20 @@ class SettingsRepository
         }
     }
 
+    public function getFormattedPhases()
+    {
+        $phases = collect();
+
+        foreach ($this->getPhases() as $phase) {
+            $phases->put($phase->id, [
+                'start' => Carbon::parse($phase->start)->format('d/m/Y'),
+                'end' => Carbon::parse($phase->end)->format('d/m/Y'),
+            ]);
+        }
+
+        return $phases;
+    }
+
     private function getStart($date)
     {
         $start = explode(' - ', $date)[0];

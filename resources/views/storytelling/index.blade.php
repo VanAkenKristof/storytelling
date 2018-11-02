@@ -51,18 +51,17 @@
 
                 <div style="margin-bottom: 10px;">
                     <h2 style="margin-bottom: 0px;">Creation</h2>
-                    <span class="text-muted"><i class="fa fa-clock-o"></i> 1st Nov 2018 - 30th Nov 2018 </span>
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> {{ $phases[1]['start'] }} - {{ $phases[1]['end'] }} </span>
                 </div>
 
                 <p>
                     During this time contestant will be able to create their unique story that they want to share with
-                    the world! All contestants are able to edit their story until they are satisfied. Submissions will
-                    close on 30 november 2018 at 24:00h.
+                    the world! All contestants are able to edit their story until they are satisfied.
                 </p>
 
                 <div style="margin-bottom: 10px;">
                     <h2 style="margin-bottom: 0px;">Voting</h2>
-                    <span class="text-muted"><i class="fa fa-clock-o"></i> 1st Dec 2018 - 31st Dec 2018 </span>
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> {{ $phases[2]['start'] }} - {{ $phases[2]['end'] }} </span>
                 </div>
 
                 <p>
@@ -74,7 +73,7 @@
 
                 <div style="margin-bottom: 10px;">
                     <h2 style="margin-bottom: 0px;">Sudden Death</h2>
-                    <span class="text-muted"><i class="fa fa-clock-o"></i> 1st Jan 2019 - 31st Jan 2018 </span>
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> {{ $phases[3]['start'] }} - {{ $phases[3]['end'] }} </span>
                 </div>
 
                 <p>
@@ -85,7 +84,7 @@
 
                 <div style="margin-bottom: 10px;">
                     <h2 style="margin-bottom: 0px;">Results</h2>
-                    <span class="text-muted"><i class="fa fa-clock-o"></i> 1st Feb 2019 </span>
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> {{ $phases[1]['start'] }} </span>
                 </div>
 
                 <p>
