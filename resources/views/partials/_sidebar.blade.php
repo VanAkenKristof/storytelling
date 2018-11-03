@@ -27,19 +27,19 @@
                 <a href="{{ route('storytelling.index') }}"><i class="fa fa-fire"></i> <span class="nav-label">Storytelling</span></a>
             </li>
 
-            @if (($currentPhase == 1 && (Auth::User() && !Auth::User()->admin)) || env('TESTMODE'))
+            @if ($currentPhase == 1 || env('TESTMODE'))
             <li>
                 <a href="{{ route('storytelling.create') }}"><i class="fa fa-pencil"></i> <span class="nav-label">Your story</span></a>
             </li>
             @endif
 
-            @if ($currentPhase == 2 && (Auth::User() && !Auth::User()->admin) || env('TESTMODE'))
+            @if ($currentPhase == 2 || env('TESTMODE'))
             <li>
                 <a href="{{ route('storytelling.list') }}"><i class="fa fa-book"></i> <span class="nav-label">Read stories</span></a>
             </li>
             @endif
 
-            @if($currentPhase == 3 || (Auth::User() && Auth::User()->admin) || env('TESTMODE'))
+            @if($currentPhase == 3 || env('TESTMODE'))
                 <li>
                     <a href="{{ route('storytelling.rankings') }}"><i class="fa fa-list-ol"></i> <span class="nav-label">Story Rankings</span></a>
                 </li>
